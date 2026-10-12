@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Një pyetje për Fiona-n</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			display: grid;
+			place-items: center;
+			overflow: hidden;
+			padding: 24px;
+			background: linear-gradient(145deg, #d7193f, #a9002c);
+			color: #fff;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.card {
+			width: min(100%, 560px);
+			padding: clamp(32px, 8vw, 64px) 28px;
+			border: 1px solid rgb(255 255 255 / 25%);
+			border-radius: 28px;
+			background: rgb(255 255 255 / 12%);
+			box-shadow: 0 24px 70px rgb(75 0 20 / 28%);
+			text-align: center;
+			backdrop-filter: blur(8px);
+		}
+
+		.heart {
+			margin: 0 0 14px;
+			font-size: 56px;
+			animation: beat 1.2s infinite;
+		}
+
+		h1 {
+			margin: 0 auto 32px;
+			font-size: clamp(2rem, 7vw, 3.25rem);
+			line-height: 1.15;
+		}
+
+		.choices {
+			display: flex;
+			justify-content: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+
+		button {
+			min-width: 120px;
+			padding: 14px 28px;
+			border: 0;
+			border-radius: 999px;
+			background: #fff;
+			color: #b20d35;
+			font: inherit;
+			font-size: 1.1rem;
+			font-weight: 700;
+			cursor: pointer;
+			transition: transform 180ms ease, box-shadow 180ms ease;
+		}
+
+		button:hover {
+			transform: translateY(-3px) scale(1.04);
+			box-shadow: 0 10px 24px rgb(75 0 20 / 25%);
+		}
+
+		button:focus-visible {
+			outline: 3px solid #ffd5df;
+			outline-offset: 4px;
+		}
+
+		#message {
+			min-height: 1.5em;
+			margin: 24px 0 0;
+			font-size: 1.2rem;
+			font-weight: 700;
+		}
+
+		@keyframes beat {
+			0%, 100% { transform: scale(1); }
+			15% { transform: scale(1.16); }
+			30% { transform: scale(1); }
+			45% { transform: scale(1.1); }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				scroll-behavior: auto !important;
+				transition-duration: 0.01ms !important;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="card">
+		<p class="heart" aria-hidden="true">❤️</p>
+		<h1>Fiona, a do të bëhesh gruaja ime?</h1>
+		<div class="choices" aria-label="Zgjidh përgjigjen">
+			<button type="button">Po 💍</button>
+			<button type="button">Po ❤️</button>
+		</div>
+		<p id="message" aria-live="polite"></p>
+	</main>
+
+	<script>
+		const message = document.querySelector('#message');
+
+		document.querySelectorAll('.choices button').forEach((button) => {
+			button.addEventListener('click', () => {
+				message.textContent = 'E dija! Të dua, Fiona! ❤️';
+			});
+		});
+	</script>
+</body>
+</html>
